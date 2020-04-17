@@ -30,7 +30,7 @@ function gotosymbol(
     # local goto
     if !onlyglobal
       localitems = localgotoitem(word, path, column, row, startrow, context)
-      isempty(localitems) || return @tojs error: false, items: localitems
+      isempty(localitems) || return (error = false, items = localitems)
     end
 
     # global goto
@@ -40,12 +40,12 @@ function gotosymbol(
     else
       globalgotoitems(word, m, path, text)
     end
-    isempty(globalitems) || return @tojs error: false, items: globalitems
+    isempty(globalitems) || return (error = false, items = globalitems)
   catch err
-    return @tojs error: true
+    return (error = true,)
   end
 
-  return @tojs error: true # nothing hits
+  return (error = true,) # nothing hits
 end
 
 const GotoItem = let
@@ -58,7 +58,7 @@ const GotoItem = let
   NamedTuple{tuple(first.(n2t)...), Tuple{last.(n2t)...}}
 end
 GotoItem(name::String, text::String, file::String, line::Int = 0)::GotoItem =
-  @tojs name, text, file: normpath(file), line
+  (name = name, text = text, file = normpath(file), line = line)
 GotoItem(name::String, file::String, line::Int = 0) = GotoItem(name, name, file, line)
 
 ### local goto

@@ -19,17 +19,18 @@ end
 
 function CompletionSuggetion(
   prefix, text, type, icon;
-  rl = "", ll = "", desc = "", url = "", detail = "")::CompletionSuggetion
-  return @tojs (
-    replacementPrefix: prefix,
-    text,
-    type,
-    icon,
-    rightLabel: rl,
-    leftLabel: ll,
-    description: desc,
-    descriptionMoreURL: url,
-    detailtype: detail
+  rl = "", ll = "", desc = "", url = "", detail = ""
+)::CompletionSuggetion
+  return (
+    replacementPrefix = prefix,
+    text = text,
+    type = type,
+    icon = icon,
+    rightLabel = rl,
+    leftLabel = ll,
+    description = desc,
+    descriptionMoreURL = url,
+    detailtype = detail
   )
 end
 

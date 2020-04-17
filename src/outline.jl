@@ -24,7 +24,7 @@ function updateeditor(text, mod = "Main", path = nothing, updateSymbols = true)
 end
 
 OutlineItem(name, type, icon, item::ToplevelItem) =
-    @tojs name, type, icon, start: first(item.lines), stop: last(item.lines)
+    (name = name, type = type, icon = icon, start = first(item.lines), stop = last(item.lines))
 
 outline(items) = filter!(item -> item !== nothing, outlineitem.(items))
 
